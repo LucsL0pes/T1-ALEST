@@ -1,11 +1,19 @@
 package classesdeapoio.ordenacao;
 
 public class InsertionSort {
-    private int operacoes; //propriedade para guardar o numero de operacoes realizadas
+    private long operacoes; //propriedade para guardar o numero de operacoes realizadas
     private long tempoInicio; //usado para guardar o inicio da execucao
     private long tempoFim;
+    public long getTempoExecucao() {
+        long tempoExecucao = (tempoFim - tempoInicio) / 1_000_000  ;
+        return tempoExecucao;
+    }
 
-    public void ordernar(int[] arrayInteiros) {
+    public long getOperacoes() {
+        return operacoes;
+    }
+
+    public void ordenar(int[] arrayInteiros) {
         tempoInicio = System.nanoTime();
         operacoes = 0;
 
@@ -23,6 +31,7 @@ public class InsertionSort {
             operacoes++;
             arrayInteiros[i + 1] = chave;
         }
+        tempoFim = System.nanoTime();
     }
 
 

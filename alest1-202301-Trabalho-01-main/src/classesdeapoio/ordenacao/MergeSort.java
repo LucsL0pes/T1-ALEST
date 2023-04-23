@@ -7,16 +7,13 @@ public class MergeSort {
     private int[] arrayInteiros;
     private int[] arrayAuxiliar;
     private int tamanho;
-
     public long getOperacoes() {
         return operacoes;
     }
-
     public long getTempoExecucao() {
         long tempoExecucao = (tempoFim - tempoInicio) / 1_000_000  ;
         return tempoExecucao;
     }
-
     public void ordenar(int[] arrayInteiros) {
         tempoInicio = System.nanoTime();
         operacoes = 0;
@@ -25,6 +22,7 @@ public class MergeSort {
         this.arrayAuxiliar = new int[tamanho]; //cria um novo array que terá os elementos ordenados
         mergeSort(0, tamanho - 1); //inicia o merge no array inteiro
         tempoFim = System.nanoTime();
+        testar();
     }
 
     private void mergeSort(int esquerda, int direita) {
@@ -72,6 +70,18 @@ public class MergeSort {
             k++;
             i++;
             operacoes++;
+        }
+    }
+
+    private void testar()  {
+        for (int i = 1; i < arrayInteiros.length; i++) {
+            if(arrayInteiros[i-1]>arrayInteiros[i]) {
+                try {
+                    throw new Exception("Array com problemas de ordenação");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ public class BubbleSort {
         return tempoFim;
     }
 
-
+    private int[] arrayInteiros;
     private long operacoes; //propriedade para guardar o numero de operacoes realizadas
     private long tempoInicio; //usado para guardar o inicio da execucao
     private long tempoFim;
@@ -24,6 +24,7 @@ public class BubbleSort {
         return tempoExecucao;
     }
     public void ordenar(int[] arrayInteiros) {
+        this.arrayInteiros = arrayInteiros;
         tempoInicio = System.nanoTime();
         operacoes = 0;
         int tamanho = arrayInteiros.length;
@@ -42,6 +43,39 @@ public class BubbleSort {
             }
         }
         tempoFim = System.nanoTime();
+        testar();
+    }
+
+    private void testar()  {
+        for (int i = 1; i < arrayInteiros.length; i++) {
+            if(arrayInteiros[i-1]>arrayInteiros[i]) {
+                try {
+                    throw new Exception("Array com problemas de ordenação");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arrayInt = new int[5];
+        arrayInt[0] = 99;
+        arrayInt[1] = 32;
+        arrayInt[2] = 77;
+        arrayInt[3] = 85;
+        arrayInt[4] = 95;
+
+        /*arrayInt[0] = 82;
+        arrayInt[1] = 32;
+        arrayInt[2] = 77;
+        arrayInt[3] = 45;
+        arrayInt[4] = 25;
+         */
+        BubbleSort bs = new BubbleSort();
+        bs.ordenar(arrayInt);
+        System.out.println(arrayInt);
+
     }
 
 }
